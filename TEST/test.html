@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home to About</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .page {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        .menu {
+            margin-bottom: 20px;
+        }
+        .menu button {
+            margin-right: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <button onclick="showPage('home')">Home</button>
+        <button onclick="showPage('about')">About</button>
+    </div>
+
+    <div id="home" class="page active">
+        <h1>Welcome to Home Page</h1>
+        <p>This is the Home page content.</p>
+    </div>
+
+    <div id="about" class="page">
+        <h1>Welcome to About Page</h1>
+        <p>This is the About page content.</p>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+
+            // Show the selected page
+            document.getElementById(pageId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
