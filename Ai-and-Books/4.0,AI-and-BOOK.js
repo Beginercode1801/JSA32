@@ -1,7 +1,10 @@
-const apiKey = "AIzaSyA3mGqsbQxJbVtUPIwc5O1eYkMcDn3dFug";
+// Define the query
 const query = "harry potter";
-const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&key=${apiKey}`;
 
+// Define the API URL
+const apiUrl = `https://openlibrary.org/search.json?q=${encodeURIComponent(query)}`;
+
+// Fetch data from the Open Library API
 fetch(apiUrl)
   .then((response) => {
     if (!response.ok) {
@@ -10,14 +13,15 @@ fetch(apiUrl)
     return response.json();
   })
   .then((data) => {
-    // Display first book result
-    if (data.items && data.items.length > 0) {
-      const book = data.items[0];
-      console.log("Title:", book.volumeInfo.title);
-      console.log("Authors:", book.volumeInfo.authors);
-      console.log("Publisher:", book.volumeInfo.publisher);
+    // Check if there are any results
+    if (data.docs && data.docs.length > 0) {
+      // Extract the first book's details
+      const firstBook = data.docs[0];
+      console.log("Title:", firstBook.title);
+      console.log("Author:", firstBook.author_name?.[0]); // Handle multiple authors
+      console.log("First Published:", firstBook.first_publish_year);
     } else {
-      console.log("No books found.");
+      console.log("No results found.");
     }
   })
   .catch((error) => {
