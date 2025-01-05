@@ -101,22 +101,72 @@ margin-top: -10px;
 #hay{
   color: red;
 }
-.grid{
-  display: grid;
-  grid-template-columns: auto auto auto;
-padding: 10px;
-}
-.grid > div {
-  background-color: #f1f1f1;
-  border: 1px solid black;
-  padding: 10px;
-  font-size: 30px;
-  text-align: center;
-}
-.in-grid{
-  width: 100px;
-  height: 100px;
-}
 h3{
   font-size:medium;
+}
+.main-list{
+  text-decoration-line: none;
+  color: #246cd1;
+  font-size:large;
+}
+.carousel {
+  display: flex;
+  align-items: center;
+}
+
+.carousel-track-container {
+  overflow: hidden;
+  width: 80%;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.book {
+  text-align: center;
+  margin: 0 10px;
+}
+
+.book img {
+  width: 120px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: #ccc;
+}
+
+#body-input{
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.grid{
+  display: grid;
+  grid: 150px / auto auto auto auto auto;
+  .Item2{
+    margin-left: 150px;
+  }
+  .Item3{
+    margin-left: 150px;
+  }
+  .Item4{
+    margin-left: 150px;
+  }
+  .Item5{
+    margin-left: 150px;
+  }
 }
