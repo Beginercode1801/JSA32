@@ -1,36 +1,31 @@
-// const query1 = "Control_Your_Mind_and_Master_Your_Feelings";
-// const apiUrl1 = `https://openlibrary.org/search.json?q=${encodeURIComponent(query1)}`;
+const apiKey = "5045391bc8391c9f1251809a086e89e3";
+const bookResult = document.getElementById("book-result");
 
-// fetch(apiUrl1)
-//   .then((response) => {
-//     if (!response.ok) {
-//       throw new Error(`HTTP error! status: ${response.status}`);
-//     }
-//     return response.json();
-//   })
-//   .then((data) => {
-//     if (data.docs && data.docs.length > 0) {
-//       const firstBook = data.docs[0];
-//       console.log("Title:", firstBook.title);
-//       console.log("Author:", firstBook.author_name?.[0]);
-//       console.log("First Published:", firstBook.first_publish_year);
-//     } else {
-//       console.log("No results found.");
-//     }
-//   })
-//   .catch((error) => {
-//     console.error("Error fetching data:", error);
-//   });
+document.getElementById("get-book").addEventListener("click", () => {
+    const city = document.getElementById("book-input").value;
+    if (book) {
+        getWeatherByCity(book);
+    } else {
+        alert("Nhập tên sách");
+    }
+});
 
-fetch("http://openlibrary.org/subjects/love.json")
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .then(data => displayLoveBook(data))
-  .catch(error => console.error("Error fetching data:", error));
+function getBookByBook(book) {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
+        .then(response => response.json())
+        .then(data => displayWeather(data))
+        .catch(() => alert("Không tìm thấy sách"));
+}
 
-function displayLoveBook(data){
-  const loveBook = document.getElementById("displayLoveBook")
-  loveBook.innerHTML = `
-  <h2>${data}</h2>
-  `
+
+function displayWeather(data) {
+    if (data.cod === 200) {
+        bookResult.innerHTML = `
+            <h2>${data.name}</h2>
+            <p>Tên Sách: ${data.main.temp}</p>
+            <p>Tên tác giả: ${data.weather[0].description}</p>
+        `;
+    } else {
+        weatherResult.innerHTML = `<p>${data.message}</p>`;
+    }
 }
