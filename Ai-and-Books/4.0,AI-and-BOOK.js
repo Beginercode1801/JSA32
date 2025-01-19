@@ -37,3 +37,28 @@ function searchBooks() {
       resultsContainer.innerHTML = '<p>Error fetching books. Please try again later.</p>';
     });
 }
+function handleSignIn() {
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+
+  if (username && password) {
+      localStorage.setItem('username', username);
+      localStorage.setItem('password', password);
+      document.getElementById('notice').innerText = 'Sign-in details saved successfully!';
+  } else {
+      document.getElementById('notice').innerText = 'Please fill in all fields.';
+  }
+}
+
+function handleLogin() {
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  const storedUsername = localStorage.getItem('username');
+  const storedPassword = localStorage.getItem('password');
+
+  if (username === storedUsername && password === storedPassword) {
+      document.getElementById('notice').innerText = 'Login successful! Welcome back.';
+  } else {
+      document.getElementById('notice').innerText = 'Invalid username or password.';
+  }
+}
